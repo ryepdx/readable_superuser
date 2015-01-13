@@ -1,0 +1,7 @@
+-
+  Change
+-
+  !python {model: ir.rule}: |
+    self.write(cr, uid, ref('base.res_partner_rule'),
+      {"domain_force": "['|','|','|',('company_id.child_ids','child_of',[user.company_id.id]), ('company_id','child_of',[user.company_id.id]),('company_id','=',False),('user_ids','in',(1,))]"}
+    )

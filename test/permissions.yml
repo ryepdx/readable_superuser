@@ -1,0 +1,8 @@
+-
+  Assign the partner we created in setup.xml to the superuser and make sure the peon user can read its image field
+  even though it belongs to another company.
+-
+  !python {model: res.partner}: |
+    self.write(cr, uid, ref('readable_superuser'), {'user_ids': [(4, ref('base.user_root'))]})
+    superuser = self.browse(cr, ref('peon_user'), ref('readable_superuser'))
+    assert superuser.email == 'readable@superuser.com', "Superuser was not readable!"
